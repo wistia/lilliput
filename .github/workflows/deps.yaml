@@ -29,6 +29,15 @@ jobs:
           git status
           git diff
 
+      - name: Compress deps
+        run: tar -czf deps.tar.gz deps/linux
+
+      - name: Upload deps artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deps-linux.tar.gz
+          path: deps.tar.gz
+
   macos:
     name: macOS
     runs-on: macos-14
@@ -51,3 +60,12 @@ jobs:
       - run: |
           git status
           git diff
+
+      - name: Compress deps
+        run: tar -czf deps.tar.gz deps/osx
+
+      - name: Upload deps artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deps-macos.tar.gz
+          path: deps.tar.gz
